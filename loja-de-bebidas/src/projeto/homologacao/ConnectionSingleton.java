@@ -29,7 +29,7 @@ public class ConnectionSingleton {
 	
 	public Connection connection() {
 		try {
-			if(connection == null || connection.isValid(10)) {
+			if(connection == null || connection.isClosed() || connection.isValid(10)) {
 				connection = DriverManager.getConnection(URLCON, USER,PASS);
 			}
 		} catch (SQLException e) {

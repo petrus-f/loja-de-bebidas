@@ -79,33 +79,32 @@ public class CompraBoundary extends Application implements EventHandler<Event> {
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
 		GridPane gpTop = new GridPane();
-		GridPane gpRight = new GridPane();
+		GridPane gpBottom = new GridPane();
 		GridPane gpCenter = new GridPane();
 		BorderPane bp = new BorderPane();
 
 		bp.setTop(gpTop);
-		gpTop.add(new Label("ID"), 0, 0);
+		gpTop.add(new Label("ID da Compra"), 0, 0);
 		gpTop.add(lblIDCompra, 1, 0);
-		gpTop.add(new Label("Cliente"), 2, 0);
-		gpTop.add(txtCliente, 3, 0);
-		gpTop.add(table_clientes, 3, 1);
+		gpTop.add(new Label("Cliente"), 0, 1);
+		gpTop.add(txtCliente, 1, 1);
+		gpTop.add(lblProduto, 2, 1);
+		gpTop.add(new Label("Quantidade"), 3, 1);
+		gpTop.add(txtQuantidade, 4, 1);
+		gpTop.add(new Label("Valor R$:"), 5, 1);
+		gpTop.add(lblValor, 6, 1);
+		gpTop.add(btnAdicionar, 7, 1);
 		gpTop.setVgap(20);
 		gpTop.setHgap(20);
-
-		gpCenter.add(new Label("Produto"), 0, 0);
-		gpCenter.add(lblProduto, 1, 0);
-		gpCenter.add(new Label("Quantidade"), 2, 0);
-		gpCenter.add(txtQuantidade, 3, 0);
-		gpCenter.add(new Label("Valor R$:"), 4, 0);
-		gpCenter.add(lblValor, 5, 0);
-		gpCenter.add(btnAdicionar, 6, 0);
-		gpCenter.add(table_itens, 0, 1);
-
+		
 		bp.setCenter(gpCenter);
-		bp.setRight(gpRight);
+		gpCenter.add(table_clientes, 0, 0);
+		gpCenter.add(table_itens, 2, 0);
 
-		gpRight.add(table_itens_de_compra, 0, 0);
-		gpRight.add(btnFinalizar, 0, 1);
+		
+		bp.setBottom(gpBottom);
+		gpBottom.add(table_itens_de_compra, 0, 1);
+		gpBottom.add(btnFinalizar, 0, 0);
 
 		btnAdicionar.addEventHandler(ActionEvent.ACTION, this);
 		btnFinalizar.addEventHandler(ActionEvent.ACTION, this);
@@ -116,7 +115,7 @@ public class CompraBoundary extends Application implements EventHandler<Event> {
 		definirColunasItemDeCompra();
 		definirListeners();
 
-		Scene scn = new Scene(bp, 600, 400);
+		Scene scn = new Scene(bp, -1, -1);
 		stage.setScene(scn);
 		stage.show();
 	}
